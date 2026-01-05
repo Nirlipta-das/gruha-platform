@@ -3,7 +3,7 @@
 // GRUHA Service Worker - Offline-First PWA Support
 // Per PRD §12: Platform must work in low/no internet scenarios
 
-const CACHE_VERSION = 'gruha-v1';
+const CACHE_VERSION = 'gruha-v2';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const DYNAMIC_CACHE = `${CACHE_VERSION}-dynamic`;
 const OFFLINE_QUEUE = `${CACHE_VERSION}-queue`;
