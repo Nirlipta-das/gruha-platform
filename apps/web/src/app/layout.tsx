@@ -19,6 +19,10 @@ export const metadata: Metadata = {
   title: 'GRUHA - Climate Resilience Platform',
   description: 'Protecting MSMEs from climate disasters through blockchain-powered relief finance',
   manifest: '/manifest.json',
+  icons: {
+    icon: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
@@ -26,6 +30,9 @@ export const metadata: Metadata = {
   },
   formatDetection: {
     telephone: true,
+  },
+  other: {
+    'mobile-web-app-capable': 'yes',
   },
 };
 
@@ -45,8 +52,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/icon-192.png" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/favicon.svg" />
       </head>
       <body className="bg-neutral-50 text-neutral-900 min-h-screen">
         <Providers>

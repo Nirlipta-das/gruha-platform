@@ -326,17 +326,32 @@ async function getOfflineQueue() {
   return new Promise((resolve) => {
     const dbRequest = indexedDB.open('gruha-offline', 1);
     
+    dbRequest.onupgradeneeded = (event) => {
+      const db = event.target.result;
+      if (!db.objectStoreNames.contains('requests')) {
+        db.createObjectStore('requests', { keyPath: 'id', autoIncrement: true });
+      }
+    };
+    
     dbRequest.onsuccess = (event) => {
       const db = event.target.result;
-      const tx = db.transaction('requests', 'readonly');
-      const store = tx.objectStore('requests');
-      const getAllRequest = store.getAll();
-      
-      getAllRequest.onsuccess = () => {
-        resolve(getAllRequest.result);
-      };
-      
-      getAllRequest.onerror = () => resolve([]);
+      if (!db.objectStoreNames.contains('requests')) {
+        resolve([]);
+        return;
+      }
+      try {
+        const tx = db.transaction('requests', 'readonly');
+        const store = tx.objectStore('requests');
+        const getAllRequest = store.getAll();
+        
+        getAllRequest.onsuccess = () => {
+          resolve(getAllRequest.result || []);
+        };
+        
+        getAllRequest.onerror = () => resolve([]);
+      } catch (e) {
+        resolve([]);
+      }
     };
     
     dbRequest.onerror = () => resolve([]);
