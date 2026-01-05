@@ -90,10 +90,15 @@ export function useOffline() {
           resolve(queue);
         };
 
-        navigator.serviceWorker.controller.postMessage(
-          { type: 'GET_OFFLINE_QUEUE' },
-          [messageChannel.port2]
-        );
+        const controller = navigator.serviceWorker.controller;
+        if (controller) {
+          controller.postMessage(
+            { type: 'GET_OFFLINE_QUEUE' },
+            [messageChannel.port2]
+          );
+        } else {
+          resolve([]);
+        }
       });
     }
     return [];
