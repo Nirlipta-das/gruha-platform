@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { FiArrowLeft, FiUser, FiPhone, FiMapPin, FiBriefcase, FiCheck, FiLoader } from 'react-icons/fi';
-import { gruhaAPI } from '../../../lib/api';
+import { userAPI } from '../../../lib/api';
 
 interface RegistrationForm {
   businessName: string;
@@ -61,17 +61,17 @@ export default function MSMERegistration() {
     setError(null);
 
     try {
-      const result = await gruhaAPI.msme.register(form);
+      const result = await userAPI.msme.register(form);
       if (result.success) {
         setSuccess(true);
         setTimeout(() => {
           router.push('/msme');
         }, 2000);
       } else {
-        setError(result.error || 'Registration failed. Please try again.');
+        setError('Registration failed. Please try again.');
       }
-    } catch (err) {
-      setError('Network error. Please check your connection and try again.');
+    } catch (err: any) {
+      setError(err?.message || 'Network error. Please check your connection and try again.');
     } finally {
       setLoading(false);
     }

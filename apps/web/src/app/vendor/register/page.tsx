@@ -4,13 +4,13 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { FiArrowLeft, FiUser, FiPhone, FiMapPin, FiPackage, FiTruck, FiCheck, FiLoader, FiDollarSign } from 'react-icons/fi';
-import { gruhaAPI } from '../../../lib/api';
+import { userAPI } from '../../../lib/api';
 
 interface VendorRegistrationForm {
   name: string;
   businessName: string;
   phone: string;
-  category: string;
+  category: 'warehouse' | 'transport' | 'repair_shop' | 'electrical' | 'machinery' | 'raw_material' | 'equipment' | 'power_generator' | 'temporary_shop';
   emergencyPricingAgreed: boolean;
   district: string;
   state: string;
@@ -34,12 +34,12 @@ export default function VendorRegistration() {
     pincode: '',
   });
 
-  const categories = [
+  const categories: { value: VendorRegistrationForm['category']; label: string; icon: any }[] = [
     { value: 'warehouse', label: 'Warehouse / Storage', icon: FiPackage },
     { value: 'transport', label: 'Transport / Logistics', icon: FiTruck },
-    { value: 'repair', label: 'Repair Services', icon: FiUser },
+    { value: 'repair_shop', label: 'Repair Services', icon: FiUser },
     { value: 'equipment', label: 'Equipment Rental', icon: FiUser },
-    { value: 'materials', label: 'Raw Materials', icon: FiPackage },
+    { value: 'raw_material', label: 'Raw Materials', icon: FiPackage },
   ];
 
   const states = [
@@ -60,17 +60,17 @@ export default function VendorRegistration() {
     setError(null);
 
     try {
-      const result = await gruhaAPI.vendor.register(form);
+      const result = await userAPI.vendor.register(form);
       if (result.success) {
         setSuccess(true);
         setTimeout(() => {
           router.push('/vendor');
         }, 2000);
       } else {
-        setError(result.error || 'Registration failed. Please try again.');
+        setError('Registration failed. Please try again.');
       }
-    } catch (err) {
-      setError('Network error. Please check your connection and try again.');
+    } catch (err: any) {
+      setError(err?.message || 'Network error. Please check your connection and try again.');
     } finally {
       setLoading(false);
     }
