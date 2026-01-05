@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* GRUHA Design System - PRD §6 */
+
+:root {
+  --color-primary: #2196F3;
+  --color-secondary: #4CAF50;
+  --color-alert: #F44336;
+  --color-warning: #FF9800;
+  
+  /* Emergency mode variables */
+  --emergency-font-scale: 1;
+  --emergency-button-min-height: 44px;
+}
+
+/* Emergency Mode - Auto-triggered during disasters */
+.emergency-mode {
+  --emergency-font-scale: 1.2;
+  --emergency-button-min-height: 60px;
+}
+
+.emergency-mode body {
+  background: linear-gradient(135deg, #B71C1C 0%, #D32F2F 100%);
+}
+
+/* Typography */
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: calc(1rem * var(--emergency-font-scale));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-weight: 600;
+}
+
+/* Mobile-first buttons */
+.btn {
+  @apply inline-flex items-center justify-center px-6 py-3 
+         font-medium rounded-xl transition-all duration-200
+         focus:outline-none focus:ring-2 focus:ring-offset-2
+         disabled:opacity-50 disabled:cursor-not-allowed;
+  min-height: var(--emergency-button-min-height);
+}
+
+.btn-primary {
+  @apply bg-primary-500 text-white hover:bg-primary-600 
+         focus:ring-primary-500 shadow-lg shadow-primary-500/25;
+}
+
+.btn-secondary {
+  @apply bg-secondary-500 text-white hover:bg-secondary-600 
+         focus:ring-secondary-500 shadow-lg shadow-secondary-500/25;
+}
+
+.btn-alert {
+  @apply bg-alert-500 text-white hover:bg-alert-600 
+         focus:ring-alert-500 shadow-lg shadow-alert-500/25;
+}
+
+.btn-outline {
+  @apply border-2 border-primary-500 text-primary-500 
+         hover:bg-primary-500 hover:text-white
+         focus:ring-primary-500;
+}
+
+/* Cards */
+.card {
+  @apply bg-white rounded-2xl shadow-sm border border-neutral-200 p-6;
+}
+
+.card-elevated {
+  @apply bg-white rounded-2xl shadow-lg p-6;
+}
+
+/* Emergency Alert Banner */
+.emergency-banner {
+  @apply bg-gradient-to-r from-alert-600 to-alert-500 
+         text-white py-4 px-6 text-center font-medium;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Form inputs */
+.input {
+  @apply w-full px-4 py-3 rounded-xl border border-neutral-300
+         focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20
+         transition-all duration-200 outline-none;
+  min-height: var(--emergency-button-min-height);
+}
+
+/* Balance display */
+.balance-card {
+  @apply bg-gradient-to-br from-primary-500 to-primary-700 
+         text-white rounded-2xl p-6 shadow-xl;
+}
+
+/* Accessibility: High contrast mode */
+@media (prefers-contrast: high) {
+  .btn-primary {
+    @apply border-2 border-white;
+  }
+  
+  .card {
+    @apply border-2 border-neutral-900;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Loading skeleton */
+.skeleton {
+  @apply bg-neutral-200 animate-pulse rounded;
+}
+
+/* Status badges */
+.badge {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+}
+
+.badge-pending {
+  @apply bg-warning-100 text-warning-800;
+}
+
+.badge-accepted {
+  @apply bg-primary-100 text-primary-800;
+}
+
+.badge-completed {
+  @apply bg-secondary-100 text-secondary-800;
+}
+
+.badge-cancelled {
+  @apply bg-neutral-200 text-neutral-700;
+}
+
+.badge-flagged {
+  @apply bg-alert-100 text-alert-800;
+}

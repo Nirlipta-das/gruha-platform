@@ -1,0 +1,20 @@
+{
+  "name": "@gruha/contracts",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GRUHA Blockchain Smart Contracts - Polygon Mumbai Testnet",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:mumbai": "hardhat run scripts/deploy.ts --network mumbai",
+    "deploy:local": "hardhat run scripts/deploy.ts --network localhost",
+    "verify": "hardhat verify --network mumbai",
+    "node": "hardhat node"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@openzeppelin/contracts": "^5.0.1",
+    "hardhat": "^2.19.0",
+    "dotenv": "^16.3.1"
+  }
+}

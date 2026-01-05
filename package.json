@@ -1,0 +1,41 @@
+{
+  "name": "gruha-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GRUHA - Climate Resilience Infrastructure for MSMEs with Real Blockchain",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "services/*",
+    "contracts"
+  ],
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "test": "turbo test",
+    "lint": "turbo lint",
+    "contracts:compile": "cd contracts && npx hardhat compile",
+    "contracts:test": "cd contracts && npx hardhat test",
+    "contracts:deploy:local": "cd contracts && npx hardhat run scripts/deploy.ts --network localhost",
+    "contracts:deploy:mumbai": "cd contracts && npx hardhat run scripts/deploy.ts --network mumbai",
+    "contracts:deploy:amoy": "cd contracts && npx hardhat run scripts/deploy.ts --network amoy",
+    "blockchain:dev": "cd services/blockchain-service && npm run dev",
+    "gateway:dev": "cd services/api-gateway && npm run dev",
+    "user:dev": "cd services/user-service && npm run dev",
+    "wallet:dev": "cd services/wallet-service && npm run dev",
+    "booking:dev": "cd services/booking-service && npm run dev",
+    "web:dev": "cd apps/web && npm run dev",
+    "services:dev": "concurrently --names \"GATEWAY,USER,WALLET,BOOKING,BLOCKCHAIN\" -c \"cyan,green,yellow,magenta,blue\" \"npm run gateway:dev\" \"npm run user:dev\" \"npm run wallet:dev\" \"npm run booking:dev\" \"npm run blockchain:dev\"",
+    "start:all": "concurrently --names \"GATEWAY,USER,WALLET,BOOKING,BLOCKCHAIN,WEB\" -c \"cyan,green,yellow,magenta,blue,white\" \"npm run gateway:dev\" \"npm run user:dev\" \"npm run wallet:dev\" \"npm run booking:dev\" \"npm run blockchain:dev\" \"npm run web:dev\"",
+    "hardhat:node": "cd contracts && npx hardhat node"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "turbo": "^1.11.0",
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "packageManager": "npm@10.0.0"
+}

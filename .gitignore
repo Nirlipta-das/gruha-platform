@@ -1,0 +1,146 @@
+# ===========================================
+# GRUHA Platform - Git Ignore
+# ===========================================
+
+# Dependencies
+node_modules/
+.pnp/
+.pnp.js
+.yarn/
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+*.tsbuildinfo
+.vercel/
+.netlify/
+
+# Environment files (CRITICAL - contains secrets)
+.env
+.env.local
+.env.development
+.env.production
+.env.*.local
+contracts/.env
+
+# IDE and Editor
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Testing
+coverage/
+.nyc_output/
+*.lcov
+.coverage/
+
+# Turbo
+.turbo/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+services/user-service/data/
+
+# Blockchain / Hardhat
+contracts/artifacts/
+contracts/cache/
+contracts/typechain-types/
+blockchain/hyperledger/wallet/
+blockchain/hyperledger/keystore/
+
+# Secrets and Keys (CRITICAL)
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+secrets/
+private/
+credentials/
+
+# Docker
+docker-compose.override.yml
+.docker/
+
+# Temporary files
+tmp/
+temp/
+.cache/
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
+
+# Package manager locks (optional - uncomment if not needed)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Debug files
+*.map
+.sourcemaps/
+
+# Test data / Mock data
+*.mock.json
+test-results/
+
+# Archives
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# PRD and internal docs (optional - uncomment to exclude)
+# gruha_complete_prd*.txt
+# promtp.md
+
+# Inspiration/Reference folder
+inspos/
+
+# Large binary files
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.mp3
+*.wav
+
+# Miscellaneous
+.history/
+.fusebox/
+.dynamodb/
+.serverless/
+.webpack/
+.esbuild/

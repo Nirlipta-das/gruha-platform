@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GRUHA - Offline Mode</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: #212121;
+    }
+    
+    .container {
+      background: white;
+      border-radius: 24px;
+      padding: 48px 32px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+    
+    .icon {
+      width: 80px;
+      height: 80px;
+      background: #FFF3E0;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+    }
+    
+    .icon svg {
+      width: 40px;
+      height: 40px;
+      stroke: #FF9800;
+    }
+    
+    h1 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #212121;
+      margin-bottom: 12px;
+    }
+    
+    p {
+      color: #757575;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    
+    .features {
+      background: #F5F5F5;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+    
+    .features h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #4CAF50;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .features h3 svg {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+    }
+    
+    .features ul {
+      list-style: none;
+      font-size: 14px;
+      color: #424242;
+    }
+    
+    .features li {
+      padding: 8px 0;
+      display: flex;
+      align-items: center;
+    }
+    
+    .features li::before {
+      content: "✓";
+      color: #4CAF50;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+    
+    .sms-info {
+      background: #E3F2FD;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 24px;
+    }
+    
+    .sms-info h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1976D2;
+      margin-bottom: 8px;
+    }
+    
+    .sms-info code {
+      display: block;
+      background: #1976D2;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 14px;
+      margin-top: 8px;
+    }
+    
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 16px 24px;
+      background: #2196F3;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    
+    .btn:hover {
+      background: #1976D2;
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: #2196F3;
+      border: 2px solid #2196F3;
+      margin-top: 12px;
+    }
+    
+    .btn-secondary:hover {
+      background: #E3F2FD;
+    }
+    
+    .status {
+      margin-top: 24px;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    
+    .status.checking {
+      background: #FFF3E0;
+      color: #E65100;
+    }
+    
+    .status.online {
+      background: #E8F5E9;
+      color: #2E7D32;
+    }
+    
+    .pending-count {
+      background: #FF5722;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-block;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 2.829a4.978 4.978 0 01-1.414-2.83m-1.414 5.658a9 9 0 01-2.167-9.238m7.824 2.167a1 1 0 111.414 1.414m-1.414-1.414L3 3m8.293 8.293l1.414 1.414" />
+      </svg>
+    </div>
+    
+    <h1>You're Offline</h1>
+    <p>Don't worry! GRUHA is designed to work even without internet connection.</p>
+    
+    <div class="features">
+      <h3>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        Available Offline:
+      </h3>
+      <ul>
+        <li>View your wallet balance</li>
+        <li>See booked services</li>
+        <li>Generate offline payment QR</li>
+        <li>View cached warehouse info</li>
+      </ul>
+    </div>
+    
+    <div class="sms-info">
+      <h4>📱 SMS Fallback Available</h4>
+      <p style="font-size: 13px; color: #424242;">Send these SMS commands to <strong>56677</strong>:</p>
+      <code>GRUHA BAL → Check Balance</code>
+      <code style="margin-top: 8px;">GRUHA BOOK &lt;code&gt; → Book</code>
+    </div>
+    
+    <button class="btn" onclick="checkConnection()">
+      Try Again
+    </button>
+    
+    <button class="btn btn-secondary" onclick="showCachedData()">
+      View Cached Data
+    </button>
+    
+    <div id="status" class="status checking" style="display: none;"></div>
+    
+    <div id="pending" class="pending-count" style="display: none;">
+      0 transactions pending sync
+    </div>
+  </div>
+  
+  <script>
+    // Check connection status
+    async function checkConnection() {
+      const statusEl = document.getElementById('status');
+      statusEl.style.display = 'block';
+      statusEl.className = 'status checking';
+      statusEl.textContent = 'Checking connection...';
+      
+      try {
+        const response = await fetch('/api/health', { 
+          method: 'HEAD',
+          cache: 'no-cache' 
+        });
+        
+        if (response.ok) {
+          statusEl.className = 'status online';
+          statusEl.textContent = '✓ Connection restored! Redirecting...';
+          setTimeout(() => {
+            window.location.href = '/';
+          }, 1000);
+        }
+      } catch (e) {
+        statusEl.className = 'status checking';
+        statusEl.textContent = 'Still offline. Please try again later.';
+      }
+    }
+    
+    // Show cached data
+    function showCachedData() {
+      // Navigate to cached MSME dashboard
+      window.location.href = '/msme';
+    }
+    
+    // Check for pending transactions
+    async function checkPendingTransactions() {
+      try {
+        if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+          const messageChannel = new MessageChannel();
+          
+          messageChannel.port1.onmessage = (event) => {
+            const queue = event.data;
+            if (queue && queue.length > 0) {
+              const pendingEl = document.getElementById('pending');
+              pendingEl.style.display = 'inline-block';
+              pendingEl.textContent = `${queue.length} transaction${queue.length > 1 ? 's' : ''} pending sync`;
+            }
+          };
+          
+          navigator.serviceWorker.controller.postMessage(
+            { type: 'GET_OFFLINE_QUEUE' },
+            [messageChannel.port2]
+          );
+        }
+      } catch (e) {
+        console.log('Could not check pending transactions');
+      }
+    }
+    
+    // Listen for online event
+    window.addEventListener('online', () => {
+      checkConnection();
+    });
+    
+    // Check on load
+    checkPendingTransactions();
+  </script>
+</body>
+</html>
